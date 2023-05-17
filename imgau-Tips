@@ -1,2 +1,3 @@
 Python版本最好在3.8 否则各种包可能不匹配
 pip 最好配置好镜像源
+联合概率类型 形如：-> tuple[Any, tuple[float | Any, float | Any], tuple[float | int | Any, float | int | Any]]: Python版本要在3.10（3.8也不够），报错是Python版本低的原因不是高。
