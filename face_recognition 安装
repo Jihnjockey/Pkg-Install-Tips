@@ -1,0 +1,2 @@
+python 3.8 下， 安装dlib 选择 dlib-19.19.0-cp38-cp38-win_amd64.whl
+而不是dlib-19.21.99-cp38-cp38-win_amd64.whl ， 则在 安装 face_recognition时就可避免面临 failed to build dlib wheels,  因为默认的dlib wheel 只到python3.6
