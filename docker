@@ -1,2 +1,4 @@
 docker load -i xxx.tar 时，出现：  open /var/lib/docker/tmp/docker-import-485817036/repositories: no such file or directory 
   解决： cat python-3.6-amd64.tar | docker import - python_3.6:3.6
+在load一堆images过程中，如果某个image一直load不了，就吧所有的image都删了，系统再 重启，然后重新一个一个地load
+
