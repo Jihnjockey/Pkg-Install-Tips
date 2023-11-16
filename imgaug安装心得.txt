@@ -1,0 +1,18 @@
+尝试本地下载然后pip安装whl格式
+
+对于tar.gz 解压后 cd到相应目录， Python -m setup.py install
+
+安装git
+
+对于runtime error：
+pip --default-timeout=1000 install imgaug
+pip --default-timeout=1000 install opencv-python-4.7.0.72.tar.gz
+
+pip install opencv-contrib-python==4.7.0.72 -i http://mirrors.aliyun.com/pypi/simple/
+pip --default-timeout=1000 install imgaug -i  https://pypi.mirrors.ustc.edu.cn/simple
+conda install opencv-python==4.7.0.72 -i  https://pypi.mirrors.ustc.edu.cn/simple
+
+pip install opencv-python==4.7.0.72 -i http://pypi.douban.com/simple --trusted-host pypi.douban.com
+
+
+给pip配置镜像源
