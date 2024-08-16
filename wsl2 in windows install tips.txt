@@ -1,0 +1,65 @@
+WSL安装步骤
+1.bios 里把虚拟机功能打开设为enabled
+2.启动和关闭windows功能 里把那3项功能打开
+3.公司电脑无法用 Microsoft store、wdget等命令 安装ubuntu，只能手动下载安装包然后再ps里手动安装
+
+4.启用 WSL 和虚拟机平台：
+
+打开 PowerShell（以管理员身份运行），并运行以下命令启用 WSL 和虚拟机平台：
+
+powershell
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+
+5.下载并安装 Linux 内核更新包
+https://learn.microsoft.com/zh-cn/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package
+6. 设置 WSL 2 为默认版本
+wsl --set-default-version 2
+7. ubuntu 下载安装
+https://learn.microsoft.com/zh-cn/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package
+下载.appxbuddle 格式的ubuntu系统安装包
+
+安装命令：
+cd 到安装包的目录下，然后执行：
+Add-AppxPackage -Path .\Microsoft.WindowsTerminal_Win10_1.15.2874.0_8wekyb3d8bbwe.msixbundle
+把文件名改成自己实际下载的文件名
+
+8.设置 WSL 2 为默认版本
+wsl --set-default-version 2
+9.将现有的 WSL 1 发行版转换为 WSL 2
+wsl --set-version Ubuntu-20.04 2
+10.检查 WSL 版本
+wsl --list --verbose
+11. 检查 Hyper-V 是否启用
+dism.exe /online /enable-feature /featurename:Microsoft-Hyper-V-All /all /norestart
+
+安装过程中的问题，及其解决办法
+1. 在安装后启动ubuntu时，提示：“参考的对象类型不支持尝试的操作”
+解决办法参考下文
+https://blog.csdn.net/qq_42361881/article/details/121500438
+
+2. 安装windows terminal
+windows terminal 也无法通过Microsoft 和 相关命令下载，只能手动下载
+
+打开 https://github.com/microsoft/terminal/releases，在Asserts 里下载  相应版本的.msixbundle，例如：
+Microsoft.WindowsTerminalPreview_1.21.1772.0_8wekyb3d8bbwe.msixbundle
+
+cd 到下载的目录，执行Add-AppxPackage -Path .\Microsoft.WindowsTerminalPreview_1.21.1772.0_8wekyb3d8bbwe.msixbundle
+
+******
+（1）在执行：“Add-AppxPackage -Path .\Microsoft.WindowsTerminal_<version>_8wekyb3d8bbwe.msixbundle ”时， 出现：“Add-AppxPackage : 部署失败，原因是 HRESULT: 0x80073CF3, 包无法进行更新、相关性或冲突验证。
+Windows 无法安装程序包 Microsoft.WindowsTerminal_1.15.2874.0_x64__8wekyb3d8bbwe，因为此程序包依赖于一个找不到的框架。请
+随要安装的此程序包一起提供由“CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US”发布的
+框架“Microsoft.VCLibs.140.00.UWPDesktop”(具有中性或 x64 处理器体系结构，最低版本为 14.0.30035.0)。当前已安装的名称为
+“Microsoft.VCLibs.140.00.UWPDesktop”的框架为: {}”
+
+解决办法：
+安装依赖项 Microsoft.VCLibs.140.00.UWPDesktop
+谷歌搜索 Microsoft.VCLibs.x64.14.00.Desktop.appx
+
+powershell cd 到下载目录，然后执行：Add-AppxPackage -Path .\Microsoft.VCLibs.x64.14.00.Desktop.appx
+
+重新尝试安装， 执行Add-AppxPackage -Path .\Microsoft.WindowsTerminalPreview_1.21.1772.0_8wekyb3d8bbwe.msixbundle
+*****
+
+
