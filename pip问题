@@ -1,0 +1,10 @@
+python 安装成功，但是仍然有一系列问题：
+1. sudo apt-get update 后 提示 no_module named 'apt_pkg'
+sudo apt install python3-apt
+2.执行pip 相关的命令，提示：“ModuleNotFoundError: No module named 'distutils.util”
+重新手动安装pip
+1）先下载脚本get-pip.py
+执行 wget https://bootstrap.pypa.io/get-pip.py
+2）到 https://www.piwheels.org/project/pip/手动下载pip的wheel包
+
+3）执行sudo python3 get-pip.py --no-index --find-links=./ （下载好的包移动到当前目录，设置本地安装方式）
